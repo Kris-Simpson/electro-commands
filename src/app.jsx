@@ -1,10 +1,11 @@
 import React from 'react';
+import CommandForm from './components/command_form';
 
 export default class App extends React.Component {
   render() {
     return (pug`
-      div
-        h2 Welcome to React!
+      .container-fluid
+        CommandForm
     `);
   }
 }

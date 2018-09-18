@@ -4,26 +4,29 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
     link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.min.css')
+
+    link(rel='stylesheet', href='./styles/base.css')
   body(style='overflow: hidden; background-color: rgba(0,0,0,0); margin: 0')
-    #App
+    #app
 
 script.
   import React from 'react';
   import ReactDOM from 'react-dom';
   import { AppContainer } from 'react-hot-loader';
+  import App from './app';
 
   const render = () => {
-    const App = require('./app').default;
     ReactDOM.render(
       pug`
         AppContainer
           App
       `,
-      document.getElementById('App')
+      document.getElementById('app')
     );
   }
 
   render();
+
   if (module.hot) {
     module.hot.accept(render);
   }
