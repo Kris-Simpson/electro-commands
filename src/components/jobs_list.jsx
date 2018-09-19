@@ -39,6 +39,16 @@ export default class JobsList extends React.Component {
     });
   }
 
+  removeJob(index) {
+    var jobs = [...store.get('jobs')]; // duplicate obj
+    jobs.splice(index, 1);
+
+    store.set('jobs', jobs);
+    this.setState({
+      jobs: jobs
+    });
+  }
+
   render() {
     return (pug`
       ul
@@ -49,6 +59,7 @@ export default class JobsList extends React.Component {
           li(key=index)
             button(onClick=this.props.selectedJob.bind(this, job))
               = job.name
+            button(onClick=this.removeJob.bind(this, index)) Remove
     `);
   }
 }
