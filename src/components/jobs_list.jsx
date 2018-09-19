@@ -40,13 +40,15 @@ export default class JobsList extends React.Component {
   }
 
   removeJob(index) {
-    var jobs = [...store.get('jobs')]; // duplicate obj
-    jobs.splice(index, 1);
+    if(confirm('Are you sure you want to remove this job?')) {
+      var jobs = [...store.get('jobs')]; // duplicate obj
+      jobs.splice(index, 1);
 
-    store.set('jobs', jobs);
-    this.setState({
-      jobs: jobs
-    });
+      store.set('jobs', jobs);
+      this.setState({
+        jobs: jobs
+      });
+    }
   }
 
   render() {
