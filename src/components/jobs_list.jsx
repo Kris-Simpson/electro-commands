@@ -59,7 +59,7 @@ export default class JobsList extends React.Component {
           button(onClick=this.addJob) Add job
         each job, index in this.state.jobs
           li(key=index)
-            button(onClick=this.props.selectedJob.bind(this, job))
+            button(onClick=this.props.onJobSelected.bind(this, job))
               = job.name
             button(onClick=this.removeJob.bind(this, index)) Remove
     `);

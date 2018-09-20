@@ -1,6 +1,6 @@
 import React from 'react';
+import Content from './components/content';
 import JobsList from './components/jobs_list';
-import JobContent from './components/job_content';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,10 +24,10 @@ export default class App extends React.Component {
       .container-fluid
         .row
           .col-2
-            JobsList(selectedJob=this.handleSelectedJob)
+            JobsList(onJobSelected=this.handleSelectedJob)
 
           .col-10
-            JobContent(job=this.state.selectedJob)
+            Content(job=this.state.selectedJob)
     `);
   }
 }

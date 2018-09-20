@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class JobContent extends React.Component {
+export default class Content extends React.Component {
   constructor(props) {
     super(props);
 
