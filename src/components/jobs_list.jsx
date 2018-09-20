@@ -1,21 +1,14 @@
 import React from 'react';
 import Job   from '../models/job';
-import JobStore from '../stores/job_store';
-
-const jobStore = new JobStore({
-  configName: 'user-preferences',
-  defaults: {
-    jobs: []
-  }
-});
 
 export default class JobsList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      store: props.store,
       newJobName: '',
-      jobs: jobStore.get_jobs()
+      jobs: props.store.get_jobs()
     }
 
     this.handleNewJobName = this.handleNewJobName.bind(this);
@@ -35,7 +28,7 @@ export default class JobsList extends React.Component {
     var jobs   = [...this.state.jobs]; // duplicate obj
     jobs.push(newJob);
 
-    jobStore.save_jobs(jobs);
+    this.state.store.save_jobs(jobs);
     this.setState({
       jobs: jobs
     });
@@ -46,7 +39,7 @@ export default class JobsList extends React.Component {
       var jobs = [...this.state.jobs]; // duplicate obj
       jobs.splice(index, 1);
 
-      jobStore.save_jobs(jobs);
+      this.state.store.save_jobs(jobs);
       this.setState({
         jobs: jobs
       });

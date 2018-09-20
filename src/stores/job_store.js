@@ -11,4 +11,12 @@ export default class JobStore extends Store {
   save_jobs(jobs) {
     this.set(JOBS_PROP_NAME, jobs);
   }
+
+  save_commands(commands, jobUID) {
+    var jobs = this.get_jobs();
+    var job  = jobs.find(obj => obj.uid == jobUID);
+    job.commands = commands;
+
+    this.save_jobs(jobs);
+  }
 }

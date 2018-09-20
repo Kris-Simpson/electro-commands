@@ -11,6 +11,7 @@
           "transform-es2015-classes",
           "transform-react-pug",
           "transform-react-jsx",
+          "transform-object-rest-spread",
           "react-hot-loader/babel"
         ],
         "sourceMaps": "inline"
