@@ -1,8 +1,8 @@
 import React from 'react';
 import Job   from '../models/job';
-import Store from '../store';
+import JobStore from '../stores/job_store';
 
-const store = new Store({
+const jobStore = new JobStore({
   configName: 'user-preferences',
   defaults: {
     jobs: []
@@ -15,7 +15,7 @@ export default class JobsList extends React.Component {
 
     this.state = {
       newJobName: '',
-      jobs: store.get('jobs')
+      jobs: jobStore.get_jobs()
     }
 
     this.handleNewJobName = this.handleNewJobName.bind(this);
@@ -29,11 +29,13 @@ export default class JobsList extends React.Component {
   }
 
   addJob() {
-    var newJob = new Job(this.state.newJobName);
-    var jobs   = [...store.get('jobs')]; // duplicate obj
+    var newJob = new Job({
+      name: this.state.newJobName
+    });
+    var jobs   = [...this.state.jobs]; // duplicate obj
     jobs.push(newJob);
 
-    store.set('jobs', jobs);
+    jobStore.save_jobs(jobs);
     this.setState({
       jobs: jobs
     });
@@ -41,10 +43,10 @@ export default class JobsList extends React.Component {
 
   removeJob(index) {
     if(confirm('Are you sure you want to remove this job?')) {
-      var jobs = [...store.get('jobs')]; // duplicate obj
+      var jobs = [...this.state.jobs]; // duplicate obj
       jobs.splice(index, 1);
 
-      store.set('jobs', jobs);
+      jobStore.save_jobs(jobs);
       this.setState({
         jobs: jobs
       });
